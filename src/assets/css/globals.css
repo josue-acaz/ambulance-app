@@ -132,3 +132,11 @@ p {
     margin-top: 10px;
   }
 }
+
+.whatsapp-btn {
+  background-color: #25d366;
+}
+
+.whatsapp-btn .icon {
+  color: #ffffff;
+}

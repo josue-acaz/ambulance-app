@@ -1,7 +1,11 @@
 interface ActionProps {
     icon: any;
     label: string;
-    onClick(id: string): void;
+    rel?: string;
+    target?: string;
+    href?: string;
+    className?: string;
+    onClick?(id: string): void;
 };
 
 interface RenderComponentProps {

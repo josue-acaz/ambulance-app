@@ -133,6 +133,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
             const pagination = response.data;
 
             this.setRows(pagination.data);
+            console.log(pagination.data);
             this.setPagination("total_records", pagination.total_records);
             this.setPagination("total_pages", pagination.total_pages);
             this.setPagination("page_number", pagination.page_number);

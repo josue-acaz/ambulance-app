@@ -112,22 +112,21 @@ const SelectedRow = styled.div`
 `;
 
 const ActionsView = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
+    
     display: flex;
     align-items: center;
     justify-content: flex-end;
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled.a`
     padding: 5px;
     border: 1px solid #cccccc;
     margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         cursor: pointer;

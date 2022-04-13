@@ -155,7 +155,7 @@ function TableRowComponent(props: TableRowComponentProps) {
                 </TableCell>
             ))}
             {withActions && (
-                <TableCell align="right">
+                <TableCell align="right" style={{padding: 0, height: "auto", width: "auto"}}>
                     {!selected && (
                         <ActionsView>
                             {onEdit && (
@@ -167,7 +167,7 @@ function TableRowComponent(props: TableRowComponentProps) {
                             )}
                             {actions && actions.map(action => (
                                 <Tooltip title={action.label}>
-                                    <ActionButton onClick={() => action.onClick(row.id)}>
+                                    <ActionButton onClick={() => { if(action.onClick) { action.onClick(row.id) } }} rel={action.rel} href={action.href} target={action.target} className={action.className}>
                                         {action.icon}
                                     </ActionButton>
                                 </Tooltip>

@@ -1,6 +1,6 @@
 interface EditableItemProps {
     index: number;
-    value: string;
+    text: string;
 };
 
 interface EditableListItemProps {

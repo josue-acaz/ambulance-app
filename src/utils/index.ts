@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { isMobile } from "react-device-detect";
 
 export function formatDatetime(date: string | Date, date_format_type: string) {
   if(!date) return date;
@@ -22,6 +23,8 @@ export const getFromLS = (key: string) => {
 }
 
 export function toPhoneNumber(v: string) {
+  if(!v) return "";
+
   v = v.toString().replace(/^(\d{2})(\d)/g, '($1)$2'); //Coloca parênteses em volta dos dois primeiros dígitos
   v = v.toString().replace(/(\d)(\d{4})$/, '$1-$2'); //Coloca hífen entre o quarto e o quinto dígitos
   return v;
@@ -56,4 +59,13 @@ export function numberToCurrencyBRL(number: number) {
 
 export function onlyNumbers(value: string) {
   return value.replace(/\D/g, '');
+}
+
+export function shareOnWhatsapp(endpoint_share: string) {
+  const whatsapp_desktop = 'https://web.whatsapp.com/send?text=';
+  const whatsapp_mobile = 'https://wa.me/?text=';
+
+  window.open((isMobile ? whatsapp_mobile : whatsapp_desktop) + encodeURIComponent(
+      `Acesse:: ${endpoint_share}`
+  ), '_blank');
 }

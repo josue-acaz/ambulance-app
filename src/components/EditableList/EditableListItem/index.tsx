@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 
 // types
@@ -10,10 +10,12 @@ import { EditableListItemView, Input, ItemView, ItemCheckbox, ItemInputView } fr
 export default function EditableListItem(props: EditableListItemProps)
 {
     let { item, selected, onChange, onChangeChecked, onBlur } = props;
+    const [value, setValue] = useState(item.text ? item.text : "");
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>)
     {
-        item.value = event.target.value;
+        item.text = event.target.value;
+        setValue(item.text);
         onChange(item);
     }
 
@@ -29,7 +31,7 @@ export default function EditableListItem(props: EditableListItemProps)
                     <Checkbox color="warning" checked={selected} onChange={handleChangeChecked} />
                 </ItemCheckbox>
                 <ItemInputView>
-                    <Input onChange={handleChange} placeholder="Escreva o texto aqui..." onBlur={(e) => onBlur()} />
+                    <Input value={value} onChange={handleChange} placeholder="Escreva o texto aqui..." onBlur={(e) => onBlur()} />
                 </ItemInputView>
             </ItemView>
         </EditableListItemView>

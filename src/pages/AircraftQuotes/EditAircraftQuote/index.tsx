@@ -13,6 +13,7 @@ import { type_of_transports } from "../../../shared/providers/type_of_transports
 // models
 import Customer from "../../../models/Customer";
 import AircraftQuote from "../../../models/AircraftQuote";
+import AdditionalInformation from "../../../models/AdditionalInformation";
 
 // services
 import AircraftQuoteService from "../../../services/aircraft-quote.service";
@@ -20,10 +21,12 @@ import AircraftQuoteService from "../../../services/aircraft-quote.service";
 // components
 import Select from "../../../components/form/Select";
 import DrawerForm from "../../../components/DrawerForm";
+import Modal from "../../../components/Modal";
 import EditableList from "../../../components/EditableList";
 import Autocomplete from "../../../components/form/Autocomplete";
 import CurrencyInput from "../../../components/form/CurrencyInput";
 import EditCustomerForm from "../../Customers/EditCustomer/EditCustomerForm";
+import Generated from "./Generated";
 
 // views
 import Leg from "../../../design/views/Leg";
@@ -52,7 +55,6 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
     onChange(name: string, inputs: AircraftQuote)
     {
         if(name === "final_price" || name === "custom_price_per_km") return;
-
         this.handleQuote(inputs);
         this.setErrors([]);
     }
@@ -64,13 +66,12 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
             const response = await this.service.quote(data);
             this.setInputs(response.data);
             this.setWarnings(response.warnings);
-            console.log(response);
         } catch (error: any) {
             this.setErrors(error.response.data);
         }
     }
 
-    handleChangeList(items: Array<string>)
+    handleChangeList(items: Array<AdditionalInformation>)
     {
         let inputs = this.state.inputs;
         inputs.additional_informations = items;
@@ -96,10 +97,29 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
         this.handleCloseEditForm();
     }
 
+    async save(data: AircraftQuote)
+    {
+        this.setErrors([]);
+        this.setWarnings([]);
+        this.setProcessing(true);
+        try {
+            const response = await this.service.save(data);
+            this.setWarnings(response.warnings);
+            this.setInputs(response.data);
+            this.setModalNumber(1);
+        } catch (error: any) {
+            this.setErrors(error.response.data);
+        }
+        this.setProcessing(false);
+    }
+
     RenderComponent()
     {
         return(
             <EditAircraftQuoteView>
+                <Modal number={1} currentModalNumber={this.state.modalNumber}>
+                    <Generated data={this.state.inputs} onGoBack={this.handleGoBack} />
+                </Modal>
                 <Row>
                     <Col sm="10">
                         <FormGroup>
@@ -157,7 +177,6 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                             requestUrl="/Cities/autocomplete"
                                             value={this.state.inputs.flight_segment.origin_city_name}
                                             onOptionSelected={this.handleOptionSelected}
-                                            error={this.state.submitted && !this.state.inputs.flight_segment.origin_city_id}
                                         />
                                     </FormGroup>
                                 </Col>
@@ -196,7 +215,6 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                             requestUrl="/Cities/autocomplete"
                                             value={this.state.inputs.flight_segment.destination_city_name}
                                             onOptionSelected={this.handleOptionSelected}
-                                            error={this.state.submitted && !this.state.inputs.flight_segment.destination_city_id}
                                         />
                                     </FormGroup>
                                 </Col>
@@ -316,7 +334,7 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                 <p>Adicionar informações extras? <strong>{this.state.inputs.add_informations ? "SIM" : "NÃO"}</strong></p>
                                 <Switch name="add_informations" color="warning" checked={this.state.inputs.add_informations} onChange={this.handleChangeChecked} />
                             </SwitchHorizontalView>
-                            {this.state.inputs.add_informations && <EditableList title="Adicionar Tópicos: " onChange={this.handleChangeList} />}
+                            {this.state.inputs.add_informations && <EditableList title="Adicionar Tópicos: " value={this.state.inputs.additional_informations} onChange={this.handleChangeList} />}
                         </FormGroup>
                         <FormGroup>
                             <SwitchHorizontalView>

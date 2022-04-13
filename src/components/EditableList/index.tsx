@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // types
 import { EditableListProps } from "./types";
@@ -17,7 +17,8 @@ import { EditableListView, EditableListHeader, EditableListContent, Title, AddBu
 
 export default function EditableList(props: EditableListProps)
 {
-    const [items, setItems] = useState<Array<EditableItemProps>>([]);
+    console.log(props.value);
+    const [items, setItems] = useState<Array<EditableItemProps>>(props.value ? props.value : []);
     const [selecteds, setSelecteds] = useState<Array<number>>([]);
 
     const activeSelection = selecteds.length > 0;
@@ -25,7 +26,7 @@ export default function EditableList(props: EditableListProps)
     function handleAdd(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
     {
         event.preventDefault();
-        setItems(items => [...items, { value: "", index: items.length, checked: false }]);
+        setItems(items => [...items, { text: "", index: items.length, checked: false }]);
     }
 
     function handleDelete(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)
@@ -45,7 +46,7 @@ export default function EditableList(props: EditableListProps)
     function handleChange(item: EditableItemProps)
     {
         let _items = items;
-        _items[item.index].value = item.value;
+        _items[item.index].text = item.text;
         setItems(_items);
     }
 
@@ -63,7 +64,7 @@ export default function EditableList(props: EditableListProps)
 
     function handleBlur()
     {
-        props.onChange(items.map(item => item.value));
+        props.onChange(items);
     }
 
     const isSelected = (index: number) => selecteds.findIndex(i => i === index) !== -1;

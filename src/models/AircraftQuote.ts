@@ -1,7 +1,6 @@
 import BaseEntity from "./Base/BaseEntity";
 import Flight from "./Flight";
-import Customer from "./Customer";
-import AuthUser from "./Auth/AuthUser";
+import AdditionalInformation from "./AdditionalInformation";
 import { TRIP_MODES } from "../shared/providers/trip_modes";
 import { TYPE_OF_TRANSPORTS } from "../shared/providers/type_of_transports";
 import FlightSegment from "./FlightSegment";
@@ -15,7 +14,7 @@ class AircraftQuote extends BaseEntity
     ambulance_at_origin: boolean = false;
     provide_price_per_km: boolean = false;
     ambulance_at_destination: boolean = false;
-    additional_informations: Array<string> = [];
+    additional_informations: Array<AdditionalInformation> = [];
     custom_price_per_km: number = 0;
     aircraft_aerodrome_id: string = "";
     aircraft_aerodrome_name: string = "";

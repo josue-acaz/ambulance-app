@@ -1,6 +1,9 @@
+import { EditableItemProps } from "../EditableListItem/types";
+
 interface EditableListProps {
     title: string;
-    onChange(items: Array<string>): void;
+    value: Array<EditableItemProps>;
+    onChange(items: Array<EditableItemProps>): void;
 };
 
 interface EditableListHeaderProps {

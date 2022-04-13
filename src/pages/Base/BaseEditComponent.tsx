@@ -40,6 +40,7 @@ class PropsType<T>
     warnings: Array<string> = [];
     open: boolean = false;
     tab: number = 0;
+    modalNumber: number = 0;
 }
 
 class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentProps & any, PropsType<T>> {
@@ -115,6 +116,11 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
         this.setState({ inputs });
     }
 
+    setModalNumber(modalNumber: number)
+    {
+        this.setState({ modalNumber });
+    }
+
     setLoading(loading: boolean)
     {
         this.setState({ loading });
@@ -178,7 +184,9 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
         const { name, value } = option;
         let inputs: any = this.state.inputs;
 
-        if(value)
+        console.log(option);
+
+        if(value || value === '')
         {
             Object.keys(inputs).forEach(parentKey => {
                 if(parentKey === name)
