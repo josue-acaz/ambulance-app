@@ -310,7 +310,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
                 <GridContent isEditPage={true}>
                     {this.state.loading ? <LoadingSpinner color={colors.PRIMARY} /> : (
                         this.state.processing ? <ProcessingLoader title="Processando..." msg="Por favor, aguarde!" /> : (
-                            <PageView padding="15" style={{paddingBottom: 50}}>
+                            <PageView padding="15">
                                 <form onSubmit={this.handleSubmit}>
                                     <this.RenderComponent />
                                     {this.state.warnings && <WarningComponent warnings={this.state.warnings} />}

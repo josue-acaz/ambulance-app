@@ -88,6 +88,11 @@ const PageView = styled.div<PageViewProps>`
     border-radius: 0px;
     height: auto;
     padding: ${props => props.padding ? props.padding : 0}px;
+
+    @media screen and (max-width: 1200px)
+    {
+        padding-bottom: 80px;
+    }
 `;
 
 const SwitchHorizontalView = styled.div`
