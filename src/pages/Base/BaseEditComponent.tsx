@@ -307,7 +307,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
                         onGoBack={this.handleGoBack}
                     />
                 </GridToolbar>
-                <GridContent>
+                <GridContent isEditPage={true}>
                     {this.state.loading ? <LoadingSpinner color={colors.PRIMARY} /> : (
                         this.state.processing ? <ProcessingLoader title="Processando..." msg="Por favor, aguarde!" /> : (
                             <PageView padding="15">

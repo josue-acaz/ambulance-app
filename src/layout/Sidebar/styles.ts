@@ -11,6 +11,7 @@ const SidebarView = styled.aside<SidebarProps>`
     overflow-y: auto;
     display: ${props => props.minimized ? "none": "flex"};
     justify-content: space-between;
+    height: calc(100vh - 45px);
 
     @media screen and (max-width: 1200px) {
         position: fixed;

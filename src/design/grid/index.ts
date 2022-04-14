@@ -165,6 +165,13 @@ const GridContent = styled.data<GridContentProps>`
     position: relative;
     z-index: 5;
     overflow-y: scroll;
+    height: ${props => props.isEditPage ? "calc(100vh - 90px)" : "calc(100vh - 135px)"};
+
+    // 135px para o componente de listagem
+    // Mobile: 
+
+    // 90px para o componente de edição
+    // Mobile: 
 
     @media screen and (max-width: 1200px)
     {

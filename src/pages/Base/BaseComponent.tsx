@@ -268,7 +268,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
                         onSearch={this.handleSearch} 
                     />
                 </GridToolbar>
-                <GridContent horizontalScrollView={true}>
+                <GridContent horizontalScrollView={true} isEditPage={false}>
                     {this.state.loading ? <LoadingSpinner size={40} color={colors.PRIMARY} /> : (
                         <PageView>
                             <this.RenderComponent />

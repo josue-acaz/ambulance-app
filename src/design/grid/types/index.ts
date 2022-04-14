@@ -7,6 +7,7 @@ interface GridContainerSidenavViewProps {
 };
 
 interface GridContentProps {
+    isEditPage?: boolean;
     horizontalScrollView?: boolean; /**Usado nas listagens */
 };
 
