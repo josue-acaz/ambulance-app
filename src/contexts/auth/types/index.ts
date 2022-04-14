@@ -1,9 +1,13 @@
 import AuthUser from "../../../models/Auth/AuthUser";
 import LoginCredentials from "../../../viewModels/LoginCredentials";
 
-interface AuthResponse {
+interface AuthData {
     token: string;
     auth_user: AuthUser;
+}
+
+interface AuthResponse {
+    data: AuthData;
 };
 
 interface AuthContextData {

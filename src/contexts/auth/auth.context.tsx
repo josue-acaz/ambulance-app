@@ -55,7 +55,8 @@ class AuthProvider extends React.Component<any, PropsType>
         this.setState({ processing: true });
 
         try {
-            const { token, auth_user } = await this.authService.signIn(credentials);
+            const response = await this.authService.signIn(credentials);
+            const { token, auth_user } = response.data;
             this.setState({ auth_user });
 
             api.defaults.headers.Authorization = `Bearer ${token}`;

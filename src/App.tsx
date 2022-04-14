@@ -17,14 +17,20 @@ const Intercept: React.FC = (props) =>
 
   api.interceptors.request.use(async function (config) {
     // Do something before request is sent
-      if(!config.params.is_sign_in)
+    if(!config.params.is_sign_in)
+    {
+      console.log("Verificando se o usuário está logado!");
+      const authenticated = await authGuard.checkAuthentication();
+      if(authenticated)
       {
-        const authenticated = await authGuard.checkAuthentication();
-        if(authenticated)
-        {
-          authContext.signOut();
-        }
+        console.log("Usuário logado!");
       }
+      else
+      {
+        console.log("Usuário não logado!");
+        authContext.signOut();
+      }
+    }
 
       return config;
     }, function (error) {
