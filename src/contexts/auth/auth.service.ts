@@ -8,7 +8,9 @@ import { AuthResponse } from "./types";
 
 class AuthService {
     async signIn(credentials: LoginCredentials): Promise<AuthResponse> {
-        const response = await api.post("/AuthUsers/authenticate", credentials);
+        const response = await api.post("/AuthUsers/authenticate", credentials, {
+            params: { is_sign_in: true }
+        });
         return response.data;
     }
 
