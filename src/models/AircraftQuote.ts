@@ -16,7 +16,7 @@ class AircraftQuote extends BaseEntity
     ambulance_at_destination: boolean = false;
     additional_informations: Array<AdditionalInformation> = [];
     custom_price_per_km: number = 0;
-    aircraft_aerodrome_id: string = "";
+    aircraft_aerodrome_id: string | null = "";
     aircraft_aerodrome_name: string = "";
     customer_id: string = "";
     auth_user_id: string = "";

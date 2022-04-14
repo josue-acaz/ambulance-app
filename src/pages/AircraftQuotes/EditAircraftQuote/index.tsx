@@ -81,6 +81,11 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
     handleSave()
     {
         let inputs = this.state.inputs;
+        if(inputs.aircraft_aerodrome_id === "")
+        {
+            inputs.aircraft_aerodrome_id = null; // Verificar isso aqui
+        }
+
         if(inputs.final_price)
         {
             this.save(inputs);
