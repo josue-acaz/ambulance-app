@@ -67,7 +67,8 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
             this.setInputs(response.data);
             this.setWarnings(response.warnings);
         } catch (error: any) {
-            this.setErrors(error.response.data);
+            console.log(error);
+            //this.setErrors(error.response.data);
         }
     }
 
