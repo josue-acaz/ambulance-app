@@ -6,7 +6,9 @@ import AircraftQuoteService from "../../../services/aircraft-quote.service";
 import { formatDatetime, numberToCurrencyBRL, shareOnWhatsapp } from "../../../utils";
 import { type_of_transport_labels } from "../../../shared/providers/type_of_transports";
 import { ENUM_DATETIME_FORMATS } from "../../../constants";
-
+import Quote from "../../../viewModels/Quote";
+import QuoteService from "../../../services/quote.service";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // icons
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -18,6 +20,7 @@ import { RowProps } from "../../../components/Task/types";
 class ListAircraftQuote extends BaseComponent<AircraftQuote>
 {
     title = "UTI Aérea";
+    quoteService: QuoteService = new QuoteService();
 
     constructor(props: any)
     {
@@ -58,6 +61,27 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
             value: "Última Atualização"
         }
     ];
+
+    handleShareOnWhatsapp = async (id: string) =>
+    {
+        this.setCurrentId(id);
+        let quote: Quote = new Quote();
+        quote.id = id;
+        quote.type = "aircraft_quote";
+
+        this.setProcessing(true);
+
+        try {
+            const response = await this.quoteService.share(quote);
+            const data: Quote = response.data;
+            shareOnWhatsapp(data.download_url);
+
+            this.setProcessing(false);
+        } catch (error: any) {
+            console.error(error.response);
+            this.setProcessing(false);
+        }
+    }
 
     createRow(data: AircraftQuote)
     {
@@ -101,10 +125,10 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
             ],
             actions: [
                 {
-                    icon: <WhatsAppIcon className="icon" />,
+                    icon: (this.state.processing && this.state.current_id === data.id) ? <CircularProgress size={24} color="inherit" /> : <WhatsAppIcon className="icon" />,
                     label: "Compartilhar no WhatsApp",
                     className: "whatsapp-btn",
-                    onClick: () => shareOnWhatsapp("https://fretamento.netlify.app/pedidos/" + data.id + "/pdf")
+                    onClick: () => this.handleShareOnWhatsapp(data.id),
                 },
                 {
                     icon: <DownloadIcon className="icon" />,

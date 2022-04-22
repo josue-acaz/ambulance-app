@@ -52,6 +52,7 @@ const WhatsAppButton = styled.a`
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+    color: #ffffff;
     
     .icon {
         color: #ffffff;

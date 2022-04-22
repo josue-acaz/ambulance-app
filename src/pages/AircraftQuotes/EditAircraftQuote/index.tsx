@@ -139,8 +139,12 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                 onAdd={this.handleOpenEditForm}
                                 onChange={(e) => {
                                     let inputs = this.state.inputs;
-                                    inputs.customer_name = e.target.value;
-                                    this.setInputs(inputs);
+                                    
+                                    if(e.target.value)
+                                    {
+                                        inputs.customer_name = e.target.value;
+                                        this.setInputs(inputs);
+                                    }
                                 }}
                                 onOptionSelected={this.handleOptionSelected}
                                 error={this.state.submitted && !this.state.inputs.customer_id && !this.state.inputs.customer_name}
@@ -197,10 +201,14 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                             value={this.state.inputs.flight_segment.origin_aerodrome_name}
                                             onOptionSelected={(e) => {
                                                 let inputs = this.state.inputs;
-                                                inputs.flight_segment.origin_city_name = e.value.city_full_name;
                                                 
-                                                this.setInputs(inputs);
-                                                this.handleOptionSelected(e);
+                                                if(e.value)
+                                                {
+                                                    inputs.flight_segment.origin_city_name = e.value.city_full_name;
+
+                                                    this.setInputs(inputs);
+                                                    this.handleOptionSelected(e);
+                                                }
                                             }}
                                             params={{ city_id: this.state.inputs.flight_segment.origin_city_id }}
                                             error={this.state.submitted && !this.state.inputs.flight_segment.origin_aerodrome_id}
@@ -235,10 +243,14 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                             value={this.state.inputs.flight_segment.destination_aerodrome_name}
                                             onOptionSelected={(e) => {
                                                 let inputs = this.state.inputs;
-                                                inputs.flight_segment.destination_city_name = e.value.city_full_name;
+
+                                                if(e.value)
+                                                {
+                                                    inputs.flight_segment.destination_city_name = e.value.city_full_name;
                                                 
-                                                this.setInputs(inputs);
-                                                this.handleOptionSelected(e);
+                                                    this.setInputs(inputs);
+                                                    this.handleOptionSelected(e);
+                                                }
                                             }}
                                             params={{ city_id: this.state.inputs.flight_segment.destination_city_id }}
                                             error={this.state.submitted && !this.state.inputs.flight_segment.destination_aerodrome_id}
@@ -295,13 +307,17 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                         icon={<AirplanemodeActiveIcon className="icon" />}
                                         placeholder="Escolha a aeronave"
                                         requestUrl="/Aircraft/autocomplete"
-                                        value={this.state.inputs.flight_segment.aircraft.full_name}
+                                        value={this.state.inputs.flight_segment.aircraft ? this.state.inputs.flight_segment.aircraft.full_name : ""}
                                         onOptionSelected={(e) => {
                                             let inputs = this.state.inputs;
-                                            inputs.flight_segment.aircraft = e.value;
                                             
-                                            this.setInputs(inputs);
-                                            this.handleOptionSelected(e);
+                                            if(e.value)
+                                            {
+                                                inputs.flight_segment.aircraft = e.value;
+                                            
+                                                this.setInputs(inputs);
+                                                this.handleOptionSelected(e);
+                                            }
                                         }}
                                         error={this.state.submitted && !this.state.inputs.flight_segment.aircraft_id}
                                     />
@@ -319,10 +335,14 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                             value={this.state.inputs.aircraft_aerodrome_name}
                                             onOptionSelected={(e) => {
                                                 let inputs = this.state.inputs;
-                                                inputs.aircraft_aerodrome_name = e.value.full_name;
+                                                
+                                                if(e.value)
+                                                {
+                                                    inputs.aircraft_aerodrome_name = e.value.full_name;
 
-                                                this.setInputs(inputs);
-                                                this.handleOptionSelected(e);
+                                                    this.setInputs(inputs);
+                                                    this.handleOptionSelected(e);
+                                                }
                                             }}
                                             error={this.state.submitted && !this.state.inputs.aircraft_aerodrome_id}
                                         />

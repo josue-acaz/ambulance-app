@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Home extends React.Component
+import ImageCropper from "../../components/ImageCropper";
+
+import { PageView } from "../../design";
+
+export default function Home()
 {
-    render()
-    {
-        return(
-            <h1>Home</h1>
-        );
-    }
-}
+    const [open, setOpen] = useState(true);
 
-export default Home;
+    return(
+        <PageView>
+        </PageView>
+    );
+}

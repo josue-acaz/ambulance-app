@@ -100,6 +100,24 @@ const SwitchHorizontalView = styled.div`
     align-items: center;
 `;
 
+const CircleButton = styled.button`
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 2rem;
+    background-color: ${colors.PRIMARY};
+    font-size: 12px;
+    color: ${colors.BLACK};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(.9);
+    }
+`;
+
 const PopUpCloseButton = styled.button`
     border: none;
     padding: 0;
@@ -122,4 +140,5 @@ export {
     Subtitle,
     SwitchHorizontalView,
     PopUpCloseButton,
+    CircleButton,
 };

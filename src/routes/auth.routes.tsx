@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 // pages
 import SignIn from "../pages/SignIn";
+import Download from "../pages/Download";
 
 // types
 import { RouteProps } from "./types";
@@ -15,6 +16,11 @@ class AuthRoutes extends React.Component
             exact: false,
             component: SignIn,
         },
+        {
+            path: "/download",
+            exact: false,
+            component: Download,
+        }
     ];
 
     render()
@@ -34,5 +40,6 @@ class AuthRoutes extends React.Component
         );
     }
 }
+
 
 export default AuthRoutes;

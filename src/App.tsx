@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
 import api from "./api";
 
 // contexts
@@ -45,9 +46,11 @@ const Intercept: React.FC = (props) =>
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Intercept />
-      </AuthProvider>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <AuthProvider>
+          <Intercept />
+        </AuthProvider>
+      </QueryParamProvider>
     </BrowserRouter>
   );
 }

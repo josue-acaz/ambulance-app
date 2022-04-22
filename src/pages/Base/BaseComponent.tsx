@@ -42,6 +42,7 @@ class PropsType<T> {
     pagination: PaginationFilter = new PaginationFilter();
     errors: Array<string> = [];
     warnings: Array<string> = [];
+    current_id: string = "";
     tab: number = 0;
 };
 
@@ -59,6 +60,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
         this.setRows = this.setRows.bind(this);
         this.setOpen = this.setOpen.bind(this);
         this.setErrors = this.setErrors.bind(this);
+        this.setCurrentId = this.setCurrentId.bind(this);
         this.setWarnings = this.setWarnings.bind(this);
         this.setLoading = this.setLoading.bind(this);
         this.createRows = this.createRows.bind(this);
@@ -81,6 +83,11 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
     componentDidMount()
     {
         this.index();
+    }
+
+    setCurrentId(current_id: string)
+    {
+        this.setState({ current_id });
     }
 
     setLoading(loading: boolean)
@@ -218,6 +225,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
 
     createRows(rows: Array<T>)
     {
+        this.createRow = this.createRow.bind(this);
         return rows.map(this.createRow);
     }
 

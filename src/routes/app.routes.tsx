@@ -11,6 +11,7 @@ import Aircraft from "../pages/Aircraft";
 import Customers from "../pages/Customers";
 import AircraftModels from "../pages/AircraftModels";
 import AircraftQuotes from "../pages/AircraftQuotes";
+import Download from "../pages/Download";
 
 // icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -59,6 +60,11 @@ class AppRoutes extends React.Component {
             path: "/aircraft-quotes",
             exact: false,
             component: AircraftQuotes,
+        },
+        {
+            path: "/download",
+            exact: false,
+            component: Download,
         }
     ];
 
