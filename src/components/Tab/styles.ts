@@ -9,4 +9,4 @@ const TabView = styled.div`
     justify-content: space-between;
 `;
 
-export {TabView};
+export { TabView };

@@ -38,7 +38,7 @@ export default function Option(props: OptionProps) {
     return (
         <OptionView active={active} onClick={() => onSelect(option)}>
             <RenderOptionView>
-                {RenderOption ? <RenderOption /> : <OptionText>{option[optionField]}</OptionText>}
+                {RenderOption ? RenderOption(option) : <OptionText>{option[optionField]}</OptionText>}
             </RenderOptionView>
         </OptionView>
     )

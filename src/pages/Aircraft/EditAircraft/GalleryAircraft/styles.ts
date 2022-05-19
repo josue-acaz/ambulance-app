@@ -5,10 +5,17 @@ const GalleryAircraftView = styled.div``;
 const GalleryThumbnailView = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
 
-    .seating_map:last-child {
+    .seating_map {
         margin-left: 10px;
+    }
+
+    @media screen and (max-width: 1200px)
+    {
+        flex-direction: column;
+        .seating_map {
+            margin-left: 0px;
+        }
     }
 `;
 

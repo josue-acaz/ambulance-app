@@ -157,7 +157,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
     }
 
     /**Input and other input elements */
-    handleChange(event: React.ChangeEvent<InputElementProps>)
+    handleChange(event: any) // React.ChangeEvent<InputElementProps>
     {
         let inputs: any = this.state.inputs;
         const {name, value} = event.target;
@@ -179,19 +179,17 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
     }
 
     /**Autocomplete */
-    handleOptionSelected(option: OnOptionSelectedEvent)
+    handleOptionSelected(option: OnOptionSelectedEvent, field: string = "id")
     {
         const { name, value } = option;
         let inputs: any = this.state.inputs;
-
-        console.log(option);
 
         if(value || value === '')
         {
             Object.keys(inputs).forEach(parentKey => {
                 if(parentKey === name)
                 {
-                    inputs[parentKey] = value["id"];
+                    inputs[parentKey] = value[field];
                 }
     
                 if(typeof inputs[parentKey] === 'object' && !Array.isArray(inputs[parentKey]) && inputs[parentKey] !== null)
@@ -199,7 +197,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
                     Object.keys(inputs[parentKey]).forEach(childKey => {
                         if(childKey === name)
                         {
-                            inputs[parentKey][childKey] = value["id"];
+                            inputs[parentKey][childKey] = value[field];
                         }
                     })
                 }

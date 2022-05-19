@@ -11,6 +11,9 @@ import Aircraft from "../pages/Aircraft";
 import Customers from "../pages/Customers";
 import AircraftModels from "../pages/AircraftModels";
 import AircraftQuotes from "../pages/AircraftQuotes";
+import AmbulanceQuotes from "../pages/AmbulanceQuotes";
+import Ambulances from "../pages/Ambulances";
+import AmbulanceBases from "../pages/AmbulanceBases";
 import Download from "../pages/Download";
 
 // icons
@@ -22,6 +25,7 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import AdjustIcon from "@mui/icons-material/Adjust";
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
 
 // types
 import { RouteProps } from "./types";
@@ -62,6 +66,21 @@ class AppRoutes extends React.Component {
             component: AircraftQuotes,
         },
         {
+            path: "/ambulances",
+            exact: false,
+            component: Ambulances,
+        },
+        {
+            path: "/ambulance-bases",
+            exact: false,
+            component: AmbulanceBases,
+        },
+        {
+            path: "/ambulance-quotes",
+            exact: false,
+            component: AmbulanceQuotes,
+        },
+        {
             path: "/download",
             exact: false,
             component: Download,
@@ -83,13 +102,13 @@ class AppRoutes extends React.Component {
                 {
                     to: "/aircraft-quotes",
                     label: "UTI Aérea",
-                    icon: <AdjustIcon className="icon"/>,
+                    icon: <AirplanemodeActiveIcon className="icon"/>,
                     childs: []
                 },
                 {
                     to: "/ambulance-quotes",
                     label: "Ambulância",
-                    icon: <AdjustIcon className="icon"/>,
+                    icon: <DirectionsCarIcon className="icon"/>,
                     childs: []
                 }
             ]
@@ -109,6 +128,12 @@ class AppRoutes extends React.Component {
                     to: "/ambulances",
                     label: "Ambulâncias",
                     icon: <DirectionsCarIcon className="icon"/>,
+                    childs: []
+                },
+                {
+                    to: "/ambulance-bases",
+                    label: "Bases das Ambulâncias",
+                    icon: <HomeWorkIcon className="icon"/>,
                     childs: []
                 },
                 {

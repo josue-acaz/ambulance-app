@@ -1,12 +1,11 @@
 import BaseEntity from "./Base/BaseEntity";
 
-class AircraftImage extends BaseEntity {
-    type: string = "";
+class AmbulanceImage extends BaseEntity {
     view: string = "";
     position: number = 0;
     use_in_document: boolean = false;
-    aircraft_id: string = "";
+    ambulance_id: string = "";
     url: string = "";
 };
 
-export default AircraftImage;
+export default AmbulanceImage;

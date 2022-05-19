@@ -3,7 +3,7 @@ import { CircleButton } from "../../../../../design";
 import { colors } from "../../../../../design/colors";
 
 const ThumbnailView = styled.div`
-    display: flex;
+    display: block;
 `;
 
 const ThumbnailContent = styled.div``;
@@ -37,6 +37,11 @@ const ThumbnailImage = styled.img`
 
     &:hover {
         filter: brightness(70%);
+    }
+
+    @media screen and (max-width: 1200px)
+    {
+        width: 100%;
     }
 `;
 

@@ -4,7 +4,8 @@ class AdditionalInformation extends BaseEntity
 {
     index: number = 0;
     text: string = "";
-    aircraft_quote_id?: string = "";
+    resource: string = "";
+    resource_id?: string = "";
 }
 
 export default AdditionalInformation;

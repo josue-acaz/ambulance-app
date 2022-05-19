@@ -21,7 +21,7 @@ interface AutocompleteCoreProps {
     onBlur?(event: any): void;
     onFocus?(event: any): void;
     onAdd?(): void;
-    RenderOption?(option: OptionProps): JSX.Element;
+    RenderOption?(option: any): any;
 };
 
 interface AutocompleteCoreInputProps {

@@ -1,14 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import BaseComponent from "../../Base/BaseComponent";
-import AircraftQuote from "../../../models/AircraftQuote";
-import AircraftQuoteService from "../../../services/aircraft-quote.service";
-import { formatDatetime, numberToCurrencyBRL, shareOnWhatsapp } from "../../../utils";
-import { type_of_transport_labels } from "../../../shared/providers/type_of_transports";
-import { ENUM_DATETIME_FORMATS } from "../../../constants";
+import AmbulanceQuoteService from "../../../services/ambulance-quote.service";
+import AmbulanceQuote from "../../../models/AmbulanceQuote";
 import Quote from "../../../viewModels/Quote";
 import QuoteService from "../../../services/quote.service";
+import { ambulance_type_of_transport_labels } from "../../../shared/providers/type_of_transports";
 import CircularProgress from "@mui/material/CircularProgress";
+import { formatDatetime, numberToCurrencyBRL, shareOnWhatsapp } from "../../../utils";
+import { ENUM_DATETIME_FORMATS } from "../../../constants";
 
 // icons
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -17,14 +17,14 @@ import DownloadIcon from "@mui/icons-material/Download";
 // types
 import { RowProps } from "../../../components/Task/types";
 
-class ListAircraftQuote extends BaseComponent<AircraftQuote>
+class ListAmbulanceQuotes extends BaseComponent<AmbulanceQuote>
 {
-    title = "UTI Aérea";
+    title = "Ambulância";
     quoteService: QuoteService = new QuoteService();
 
     constructor(props: any)
     {
-        super(props, new AircraftQuoteService());
+        super(props, new AmbulanceQuoteService());
     }
 
     head_labels = [
@@ -41,11 +41,11 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
             value: "Tipo",
         },
         {
-            key: "origin_aerodrome_id",
+            key: "origin_location_id",
             value: "Origem"
         },
         {
-            key: "destination_aerodrome_id",
+            key: "destination_location_id",
             value: "Destino"
         },
         {
@@ -67,7 +67,7 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
         this.setCurrentId(id);
         let quote: Quote = new Quote();
         quote.id = id;
-        quote.type = "aircraft_quote";
+        quote.type = "ambulance_quote";
 
         this.setProcessing(true);
 
@@ -83,7 +83,7 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
         }
     }
 
-    createRow(data: AircraftQuote)
+    createRow(data: AmbulanceQuote)
     {
         const row: RowProps = {
             id: data.id,
@@ -95,21 +95,21 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
                     value: data.customer_name,
                 },
                 {
-                    value: type_of_transport_labels[data.type_of_transport],
+                    value: ambulance_type_of_transport_labels[data.type_of_transport],
                 },
                 {
                     value: (
                         <div>
-                            <strong>{data.flight_segment.origin_aerodrome_name}</strong>
-                            <p>{data.flight_segment.origin_city_name}</p>
+                            <strong>{data.transport_segment.origin_location_id}</strong>
+                            <p>{data.transport_segment.origin_location_id}</p>
                         </div>
                     )
                 },
                 {
                     value: (
                         <div>
-                            <strong>{data.flight_segment.destination_aerodrome_name}</strong>
-                            <p>{data.flight_segment.destination_city_name}</p>
+                            <strong>{data.transport_segment.destination_location_id}</strong>
+                            <p>{data.transport_segment.destination_location_id}</p>
                         </div>
                     )
                 },
@@ -145,4 +145,4 @@ class ListAircraftQuote extends BaseComponent<AircraftQuote>
     }
 }
 
-export default withRouter(ListAircraftQuote);
+export default withRouter(ListAmbulanceQuotes);

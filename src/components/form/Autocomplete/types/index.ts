@@ -36,7 +36,7 @@ interface AutocompleteProps {
     onFocus?(event: any): void;
     onChange?(event: any): void;
     onOptionSelected(event: OnOptionSelectedEvent): void;
-    RenderOption?(option: OptionProps): JSX.Element;
+    RenderOption?(option: any): any;
 };
 
 export type {

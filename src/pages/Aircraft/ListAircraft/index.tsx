@@ -86,10 +86,10 @@ class ListAircraft extends BaseComponent<Aircraft>
                     value: data.passengers,
                 },
                 {
-                    value: data.autonomy,
+                    value: `${data.autonomy}h`,
                 },
                 {
-                    value: data.cruising_speed,
+                    value: `${data.cruising_speed}Km/h`,
                 },
                 {
                     value: numberToCurrencyBRL(data.price_per_km_passengers),
@@ -98,7 +98,7 @@ class ListAircraft extends BaseComponent<Aircraft>
                     value: numberToCurrencyBRL(data.price_per_km_aeromedical),
                 },
                 {
-                    value: data.fixed_price_radius
+                    value: `${data.fixed_price_radius}Km`
                 },
                 {
                     value: numberToCurrencyBRL(data.fixed_price_passengers),

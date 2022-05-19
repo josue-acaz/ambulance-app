@@ -17,7 +17,6 @@ import { EditableListView, EditableListHeader, EditableListContent, Title, AddBu
 
 export default function EditableList(props: EditableListProps)
 {
-    console.log(props.value);
     const [items, setItems] = useState<Array<EditableItemProps>>(props.value ? props.value : []);
     const [selecteds, setSelecteds] = useState<Array<number>>([]);
 
