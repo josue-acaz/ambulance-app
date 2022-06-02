@@ -75,3 +75,39 @@ export async function dataUrlToFile(dataUrl: string, fileName: string): Promise<
   const blob: Blob = await res.blob();
   return new File([blob], fileName, { type: 'image/png' });
 }
+
+// Google Maps Directions (START)
+export function typecastRoutes(routes: any){
+  routes.forEach(function(route: any){
+      route.bounds = asBounds(route.bounds);
+      // I don't think `overview_path` is used but it exists on the
+      // response of DirectionsService.route()
+      route.overview_path = asPath(route.overview_polyline);
+
+      route.legs.forEach(function(leg: any){
+          leg.start_location = asLatLng(leg.start_location);
+          leg.end_location   = asLatLng(leg.end_location);
+
+          leg.steps.forEach(function(step: any){
+              step.start_location = asLatLng(step.start_location);
+              step.end_location   = asLatLng(step.end_location);
+              step.path = asPath(step.polyline);
+          });
+
+      });
+  });
+}
+
+function asBounds(boundsObject: any){
+  return new google.maps.LatLngBounds(asLatLng(boundsObject.southwest),
+                                  asLatLng(boundsObject.northeast));
+}
+
+function asLatLng(latLngObject: any){
+  return new google.maps.LatLng(latLngObject.lat, latLngObject.lng);
+}
+
+function asPath(encodedPolyObject: any){
+  return google.maps.geometry.encoding.decodePath( encodedPolyObject.points );
+}
+// Google Maps Directions (END)

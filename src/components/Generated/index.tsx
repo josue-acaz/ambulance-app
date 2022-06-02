@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { shareOnWhatsapp } from "../../../../utils";
-import Quote from "../../../../viewModels/Quote";
-import QuoteService from "../../../../services/quote.service";
+import { shareOnWhatsapp } from "../../utils";
+import Quote from "../../viewModels/Quote";
+import QuoteService from "../../services/quote.service";
 import CircularProgress from "@mui/material/CircularProgress";
 
 // icons
@@ -23,7 +23,7 @@ export default function Generated(props: GeneratedProps) {
     {
         let quote: Quote = new Quote();
         quote.id = id;
-        quote.type = "aircraft_quote";
+        quote.type = props.type;
 
         setProcessing(true);
 

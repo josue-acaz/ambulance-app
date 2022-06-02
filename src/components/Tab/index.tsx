@@ -22,6 +22,7 @@ export default function Tab(props: TabProps) {
                     icon={tab.icon}
                     active={index === selected}
                     activeColor={tab.activeColor}
+                    disabled={tab.disabled}
                 />
             ))}
         </TabView>

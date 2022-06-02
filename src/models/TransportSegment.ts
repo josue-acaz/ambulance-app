@@ -5,6 +5,7 @@ import Location from "./Location";
 class TransportSegment extends BaseEntity {
     code: number = 0;
     number: number = 0;
+    type: string = "";
     title: string = "";
     distance: number = 0;
     transport_id: string = "";

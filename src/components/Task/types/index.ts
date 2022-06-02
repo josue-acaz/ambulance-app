@@ -94,6 +94,7 @@ interface TableRowComponentProps {
     hoverSelected?: boolean;
     disable_select?: boolean;
     actions?: Array<ActionProps>;
+    disableActions?: boolean;
     onEdit?(id: string): void;
     onClick(event: any, id: string): void;
     onHoverClick?(): void;

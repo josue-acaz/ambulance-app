@@ -23,13 +23,21 @@ class ListAmbulance extends BaseComponent<Ambulance>
             value: "Código",
         },
         {
+            key: "fixed_price_uti",
+            value: "Preço Fixo UTI",
+        },
+        {
             key: "price_per_km_uti",
             value: "Preço do Km UTI",
         },
         {
+            key: "fixed_price_basic",
+            value: "Preço Fixo Básica",
+        },
+        {
             key: "price_per_km_basic",
             value: "Preço do Km Básica",
-        },
+        }
     ];
 
     createRow(data: Ambulance)
@@ -41,7 +49,13 @@ class ListAmbulance extends BaseComponent<Ambulance>
                     value: data.code,
                 },
                 {
+                    value: numberToCurrencyBRL(data.fixed_price_uti),
+                },
+                {
                     value: numberToCurrencyBRL(data.price_per_km_uti),
+                },
+                {
+                    value: numberToCurrencyBRL(data.fixed_price_basic),
                 },
                 {
                     value: numberToCurrencyBRL(data.price_per_km_basic),

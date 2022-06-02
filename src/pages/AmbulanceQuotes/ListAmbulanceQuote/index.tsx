@@ -100,16 +100,16 @@ class ListAmbulanceQuotes extends BaseComponent<AmbulanceQuote>
                 {
                     value: (
                         <div>
-                            <strong>{data.transport_segment.origin_location_id}</strong>
-                            <p>{data.transport_segment.origin_location_id}</p>
+                            <strong>{data.transport_segment.origin_location_name}</strong>
+                            <p>{data.transport_segment.origin_city_name}</p>
                         </div>
                     )
                 },
                 {
                     value: (
                         <div>
-                            <strong>{data.transport_segment.destination_location_id}</strong>
-                            <p>{data.transport_segment.destination_location_id}</p>
+                            <strong>{data.transport_segment.destination_location_name}</strong>
+                            <p>{data.transport_segment.destination_city_name}</p>
                         </div>
                     )
                 },

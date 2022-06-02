@@ -125,7 +125,7 @@ function TableHeadComponent(props: TableHeadComponentProps) {
 }
 
 function TableRowComponent(props: TableRowComponentProps) {
-    const {row, selected, selectable, withActions, hoverTitle, hoverSelected, disable_select, actions, onClick, onEdit, onHoverClick} = props;
+    const {row, selected, selectable, withActions, disableActions, hoverTitle, hoverSelected, disable_select, actions, onClick, onEdit, onHoverClick} = props;
     const hoverEnabled = !!hoverTitle || !!onHoverClick;
 
     return(
@@ -156,7 +156,7 @@ function TableRowComponent(props: TableRowComponentProps) {
             ))}
             {withActions && (
                 <TableCell align="right" style={{padding: 0, height: "auto", width: "auto"}}>
-                    {!selected && (
+                    {!disableActions && (
                         <ActionsView>
                             {onEdit && (
                                 <Tooltip title="Editar">
@@ -242,6 +242,7 @@ export default function Task(props: TableProps) {
                         disable_select={row.disable_select}
                         hoverSelected={row.hoverSelected}
                         onHoverClick={row.onHoverClick}
+                        disableActions={selecteds.length > 0}
                     />
                 ))}
             </TableBody>

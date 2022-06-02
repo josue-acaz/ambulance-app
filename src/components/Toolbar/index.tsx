@@ -48,7 +48,7 @@ export default function Toolbar(props: ToolbarProps) {
                     <ActionsView>
                         <History>
                             {routes?.map((route, index) => (
-                                <HistorySpan>
+                                <HistorySpan key={index}>
                                     {index !== routes.length - 1 ? (
                                         <>
                                             <Link className="link" to={route.path}>{route.label}</Link>

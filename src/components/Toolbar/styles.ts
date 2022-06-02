@@ -66,7 +66,7 @@ const History = styled.div`
     }
 `;
 
-const HistoryText = styled.p`
+const HistoryText = styled.div`
     margin-left: .5rem;
     font-size: 16px;
     color: #505050;

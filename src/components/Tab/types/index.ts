@@ -3,6 +3,7 @@ interface TabItemProps {
     title: string;
     subtitle?: string;
     activeColor?: string;
+    disabled?: boolean;
 };
 
 interface TabProps {

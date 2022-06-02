@@ -1,4 +1,4 @@
-interface LegProps {
+interface SegmentProps {
     type: string;
     title: string;
     origin: string;
@@ -6,8 +6,8 @@ interface LegProps {
     distance: number;
 };
 
-interface LegViewProps {
+interface SegmentViewProps {
     type: string;
 };
 
-export type { LegProps, LegViewProps };
+export type { SegmentProps, SegmentViewProps };

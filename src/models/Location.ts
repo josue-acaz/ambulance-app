@@ -1,4 +1,5 @@
 import BaseEntity from "./Base/BaseEntity";
+import City from "./City";
 
 class Location extends BaseEntity {
     name: string = "";
@@ -6,6 +7,7 @@ class Location extends BaseEntity {
     longitude: number = 0;
     city_id: string = "";
     description: string = "";
+    city: City = new City();
 
     // NOT MAPPED
     place_id: string = ""; // For google places

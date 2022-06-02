@@ -26,10 +26,10 @@ import EditableList from "../../../components/EditableList";
 import Autocomplete from "../../../components/form/Autocomplete";
 import CurrencyInput from "../../../components/form/CurrencyInput";
 import EditCustomerForm from "../../Customers/EditCustomer/EditCustomerForm";
-import Generated from "./Generated";
+import Generated from "../../../components/Generated";
 
 // views
-import Leg from "../../../design/views/Leg";
+import Segment from "../../../components/Segment";
 
 // icons
 import AdjustIcon from "@mui/icons-material/Adjust";
@@ -92,7 +92,7 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
             this.save(inputs);
         }
     }
-
+    
     handleSavedCustomer(customer: Customer)
     {
         let inputs = this.state.inputs;
@@ -105,6 +105,8 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
 
     async save(data: AircraftQuote)
     {
+        console.log(data);
+        return;
         this.setErrors([]);
         this.setWarnings([]);
         this.setProcessing(true);
@@ -124,7 +126,7 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
         return(
             <EditAircraftQuoteView>
                 <Modal number={1} currentModalNumber={this.state.modalNumber}>
-                    <Generated data={this.state.inputs} onGoBack={this.handleGoBack} />
+                    <Generated type="aircraft_quote" data={this.state.inputs} onGoBack={this.handleGoBack} />
                 </Modal>
                 <Row>
                     <Col sm="10">
@@ -266,7 +268,7 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
                                 {this.state.inputs.flight.flight_segments.map(flight_segment => (
                                     <Col sm="3">
                                         <FormGroup>
-                                            <Leg type={flight_segment.type} title={flight_segment.title} origin={flight_segment.origin_aerodrome_name} destination={flight_segment.destination_aerodrome_name} distance={flight_segment.distance} />
+                                            <Segment type={flight_segment.type} title={flight_segment.title} origin={flight_segment.origin_aerodrome_name} destination={flight_segment.destination_aerodrome_name} distance={flight_segment.distance} />
                                         </FormGroup>
                                     </Col>
                                 ))}

@@ -51,11 +51,40 @@ const LocationOptionSubtitle = styled.p`
     color: #666666;
 `;
 
+const RouteMapView = styled.div<any>`
+    height: 400px;
+    width: 100%;
+    position: relative;
+    display: ${props => props.open ? "block" : "none"};
+`;
+
+const AmbulanceOptionView = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const AmbulanceOptionName = styled.p`
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+    margin-right: 5px;
+`;
+
+const AmbulanceOptionText = styled.p`    
+    font-size: 12px;
+    color: #666666;
+    margin-right: 5px;
+`;
+
 export {
     EditAmbulanceQuoteView,
     LocationButton,
     RouteMapButton,
     LocationOptionView,
     LocationOptionTitle,
-    LocationOptionSubtitle
+    LocationOptionSubtitle,
+    RouteMapView,
+    AmbulanceOptionView,
+    AmbulanceOptionName,
+    AmbulanceOptionText
 };

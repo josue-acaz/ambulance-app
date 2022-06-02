@@ -7,6 +7,7 @@ interface TabItemProps {
     active: boolean;
     activeColor?: string;
     icon?: React.ReactNode;
+    disabled?: boolean;
     onClick(tab: number): void;
 };
 

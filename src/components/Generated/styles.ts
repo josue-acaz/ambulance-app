@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../design/colors";
+import { colors } from "../../design/colors";
 
 const GeneratedView = styled.div`
     display: flex;

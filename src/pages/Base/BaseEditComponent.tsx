@@ -3,6 +3,9 @@ import BaseEntity from "../../models/Base/BaseEntity";
 import { ENUM_ACTIONS } from "../../constants";
 import { colors } from "../../design/colors";
 
+// models
+import Coordinate from "../../viewModels/Coordinate";
+
 // types
 import { InputElementProps } from "./types";
 import { RouteComponentProps } from "react-router-dom";
@@ -41,6 +44,11 @@ class PropsType<T>
     open: boolean = false;
     tab: number = 0;
     modalNumber: number = 0;
+    zoom: number = 12;
+    center: Coordinate = { lat: -1.45548, lng: -48.48078 };
+    markers: Array<any> = [];
+    directions_renderer: any = null;
+    map: any = null;
 }
 
 class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentProps & any, PropsType<T>> {
@@ -78,6 +86,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
         this.handleChangeChecked = this.handleChangeChecked.bind(this);
         this.afterShow = this.afterShow.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.clearMarkers = this.clearMarkers.bind(this);
     }
 
     componentDidMount()
@@ -154,6 +163,13 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
     setWarnings(warnings: Array<string>)
     {
         this.setState({ warnings });
+    }
+
+    clearMarkers()
+    {
+        for (let i = 0; i < this.state.markers.length; i++) {
+            this.state.markers[i].setMap(null);
+        }
     }
 
     /**Input and other input elements */

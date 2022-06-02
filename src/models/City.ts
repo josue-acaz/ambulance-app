@@ -7,6 +7,7 @@ class City extends BaseEntity {
     is_capital: boolean = false;
     state_id: string = "";
     timezone_id: string = "";
+    full_name: string = "";
 };
 
 export default City;

@@ -24,6 +24,7 @@ class Layout extends React.Component<LayoutProps, PropsType>
     {
         super(props);
         this.toggleMinimized = this.toggleMinimized.bind(this);
+        this.handleOnOptionClick = this.handleOnOptionClick.bind(this);
     }
 
     componentDidMount()
@@ -39,6 +40,13 @@ class Layout extends React.Component<LayoutProps, PropsType>
         this.setState({ minimized: !this.state.minimized });
     }
 
+    handleOnOptionClick()
+    {
+        if(isMobile) {
+            this.toggleMinimized();
+        }
+    }
+
     render()
     {
         return(
@@ -50,11 +58,7 @@ class Layout extends React.Component<LayoutProps, PropsType>
                 <Sidebar 
                     minimized={this.state.minimized} 
                     options={this.props.sidebarOptions} 
-                    onOptionClick={() => {
-                        if(isMobile) {
-                            this.toggleMinimized();
-                        }
-                    }} 
+                    onOptionClick={this.handleOnOptionClick} 
                 />
             </LayoutView>
         );

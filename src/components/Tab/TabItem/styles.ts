@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../design/colors";
 import { TabItemActiveBarProps } from "./types";
 
-const TabItemView = styled.div`
+const TabItemView = styled.div<any>`
     width: 100%;
     height: 100%;
     display: flex;
@@ -13,6 +13,8 @@ const TabItemView = styled.div`
         cursor: pointer;
         background-color: #eeeeee;
     }
+
+    filter: opacity(${props => props.disabled ? '0.5' : '1'});
 `;
 
 const TabItemContent = styled.div`

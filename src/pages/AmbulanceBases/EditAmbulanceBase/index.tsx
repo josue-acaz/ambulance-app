@@ -10,6 +10,7 @@ import AmbulanceBaseService from "../../../services/ambulance-base.service";
 
 // components
 import Input from "../../../components/form/Input";
+import Autocomplete from "../../../components/form/Autocomplete";
 
 // styles
 import { FormGroup, Label } from "../../../design";
@@ -37,7 +38,7 @@ class EditAmbulanceBase extends BaseEditComponent<AmbulanceBase> {
     {
         return(
             <Row>
-                <Col sm="12">
+                <Col sm="8">
                     <FormGroup>
                         <Label>Nome</Label>
                         <Input 
@@ -45,6 +46,19 @@ class EditAmbulanceBase extends BaseEditComponent<AmbulanceBase> {
                             value={this.state.inputs.name} 
                             onChange={this.handleChange} 
                             error={this.state.submitted && !this.state.inputs.name}
+                        />
+                    </FormGroup>
+                </Col>
+                <Col sm="4">
+                    <FormGroup>
+                        <Label>Cidade</Label>
+                        <Autocomplete
+                            name="city_id"
+                            optionField="full_name"
+                            placeholder="Cidade"
+                            requestUrl="/Cities/autocomplete"
+                            value={this.state.inputs.city_full_name}
+                            onOptionSelected={this.handleOptionSelected}
                         />
                     </FormGroup>
                 </Col>

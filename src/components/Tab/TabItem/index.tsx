@@ -15,10 +15,15 @@ import {
 } from "./styles";
 
 export default function TabItem(props: TabItemProps) {
-    const { index, title, subtitle, icon, active, activeColor, onClick } = props;
+    const { index, title, subtitle, icon, active, activeColor, disabled, onClick } = props;
 
     return(
-        <TabItemView onClick={() => onClick(index)}>
+        <TabItemView disabled={disabled} onClick={() => {
+            if(!disabled)
+            {
+                onClick(index);
+            }
+        }}>
             <TabItemContent>
                 <Header>
                     {icon && <Icon>{icon}</Icon>}

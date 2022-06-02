@@ -74,6 +74,7 @@ export default function Select(props: SelectProps) {
                             onClick={toggleOpen} 
                             onKeyUp={handleKeyUp} 
                             placeholder="Selecione..."
+                            onChange={() => {}}
                         />
                     )}
                 </SelectInput>

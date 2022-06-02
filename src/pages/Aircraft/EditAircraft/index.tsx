@@ -33,17 +33,6 @@ import { Row, Col } from "react-bootstrap";
 class EditAircraft extends BaseEditComponent<Aircraft> {
     title = "Nova Aeronave";
 
-    tabs = [
-        {
-            title: "Informações",
-            icon: <></>
-        },
-        {
-            title: "Imagens",
-            icon: <></>
-        }
-    ];
-
     constructor(props: any)
     {
         super(props, new AircraftService(), new Aircraft());
@@ -85,7 +74,7 @@ class EditAircraft extends BaseEditComponent<Aircraft> {
                     {this.state.loading ? <LoadingSpinner color={colors.PRIMARY} /> : (
                         this.state.processing ? <ProcessingLoader title="Processando..." msg="Por favor, aguarde!" /> : (
                             <PageView padding="0">
-                                <Tab tabs={this.tabs} selected={this.state.tab} onChange={this.setTab} />
+                                <Tab tabs={[ { title: "Informações" }, { title: "Imagens", disabled: this.id === "0" } ]} selected={this.state.tab} onChange={this.setTab} />
                                 <TabContent index={0} selected={this.state.tab}>
                                     <form onSubmit={this.handleSubmit}>
                                         <Row>

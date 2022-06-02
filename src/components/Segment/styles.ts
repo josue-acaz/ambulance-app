@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { colors } from "../../colors";
-import { LegViewProps } from "./types";
+import { colors } from "../../design/colors";
+import { SegmentViewProps } from "./types";
 
-const LegView = styled.div<LegViewProps>`
+const SegmentView = styled.div<SegmentViewProps>`
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: 10px;
@@ -31,4 +31,4 @@ const DistanceText = styled.p`
     color: ${colors.CHECK};
 `;
 
-export { LegView, Title, OriginText, DestinationText, DistanceText };
+export { SegmentView, Title, OriginText, DestinationText, DistanceText };

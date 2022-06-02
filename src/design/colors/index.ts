@@ -8,4 +8,5 @@ export const colors = {
     BLUE: "#0000EE",
     CHECK: "#fd7e14",
     DISABLED: "#dddddd",
+    SECONDARY: "#cccccc",
 };

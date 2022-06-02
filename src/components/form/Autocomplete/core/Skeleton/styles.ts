@@ -1,4 +1,4 @@
-import Skeleton from "@mui/lab/Skeleton";
+import { Skeleton } from "@mui/material";
 import styled from "styled-components";
 
 const SkeletonAutocomplete = styled(Skeleton)`
