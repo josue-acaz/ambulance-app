@@ -48,7 +48,7 @@ function App() {
     <BrowserRouter>
       <QueryParamProvider ReactRouterRoute={Route}>
         <AuthProvider>
-        <Routes />
+          <Intercept />
         </AuthProvider>
       </QueryParamProvider>
     </BrowserRouter>
