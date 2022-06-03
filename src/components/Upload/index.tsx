@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Compressor from "compressorjs";
 import { dataUrlToFile } from "../../utils";
 import { colors } from "../../design/colors";
 import api from "../../api";
@@ -21,6 +22,7 @@ export default function Upload(props: UploadProps) {
     const [file, setFile] = useState<File | null>(null);
     const [cropper, setCropper] = useState<any>(undefined);
     const [uploading, setUploading] = useState<boolean>(false);
+    const [isOriginal, setIsOriginal] = useState<boolean>(false);
     const [progress, setProgress] = useState(0);
 
     function handleChangeFile(event: any)
@@ -40,6 +42,18 @@ export default function Upload(props: UploadProps) {
                 const fileCroppedImage = await dataUrlToFile(croppedImage, file.name);
                 
                 processUpload(fileCroppedImage);
+            }
+        }
+    }
+
+    async function handleUploadOriginalImage()
+    {
+        setIsOriginal(true);
+        if(!uploading)
+        {
+            if (file !== null) {
+                setUploading(true);
+                processUpload(file);
             }
         }
     }
@@ -89,10 +103,12 @@ export default function Upload(props: UploadProps) {
             setCropper(undefined);
             setCropper(null);
             props.onUploaded();
+            setIsOriginal(false);
         } 
         catch(error) 
         {
             setUploading(false);
+            setIsOriginal(false);
         }
     }
 
@@ -104,7 +120,8 @@ export default function Upload(props: UploadProps) {
                         <ImageCropper onCrop={handleUpload} src={url} onChange={setCropper} />
                     </Dropzone>
                     <UploadActions>
-                        <Button color={colors.PRIMARY} onClick={handleUpload} disabled={!url}>{uploading ? <CircularProgress size={24} color="inherit" /> : "Upload"}</Button>
+                        <Button color={colors.PRIMARY} onClick={handleUpload} disabled={!url}>{uploading && !isOriginal ? <CircularProgress size={24} color="inherit" /> : "Upload"}</Button>
+                        <Button color={colors.PRIMARY} onClick={handleUploadOriginalImage} disabled={!url}>{uploading && isOriginal ? <CircularProgress size={24} color="inherit" /> : "Upload (Imagem Original)"}</Button>
                         <Button color="transparent" onClick={handleCancel}>Cancelar</Button>
                     </UploadActions>
                 </UploadCard>

@@ -24,6 +24,7 @@ export default function ImageCropper(props: ImageCropperProps)
       checkOrientation={false}
       onInitialized={props.onChange}
       guides={true}
+      crossOrigin="anonymous"
     />
   );
 }
