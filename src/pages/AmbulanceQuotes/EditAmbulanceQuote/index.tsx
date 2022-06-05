@@ -96,10 +96,11 @@ class EditAmbulanceQuote extends BaseEditComponent<AmbulanceQuote> {
         this.setErrors([]);
         this.setWarnings([]);
         this.renderDirections = this.renderDirections.bind(this);
+        console.log(data);
         try {
             const response = await this.service.quote(data);
             this.setInputs(response.data);
-            console.log(response.data);
+            
             this.setWarnings(response.warnings);
             this.renderDirections(this.state.map, this.state.directions_renderer, response.data, refresh_map);
         } catch (error: any) {
@@ -112,7 +113,7 @@ class EditAmbulanceQuote extends BaseEditComponent<AmbulanceQuote> {
     {
         this.handleQuote = this.handleQuote.bind(this);
 
-        if(name !== "custom_price_per_km" && name !== "final_price" && name !== "provide_price_per_km")
+        if(name !== "custom_price_per_km" && name !== "final_price" && name !== "provide_price_per_km" && name !== "add_informations")
         {
             this.handleQuote(inputs, name !== "type_of_transport" && name !== "customer_id");
         }
@@ -125,6 +126,11 @@ class EditAmbulanceQuote extends BaseEditComponent<AmbulanceQuote> {
 
         this.setState({ map });
         this.setState({ directions_renderer });
+
+        if(this.id !== "0" && this.state.inputs.directions)
+        {
+            this.renderDirections(map, directions_renderer, this.state.inputs);
+        }
     }
 
     renderDirections(map: google.maps.Map, directions_renderer: any, ambulance_quote: AmbulanceQuote, refresh_map: boolean = true)
@@ -380,6 +386,7 @@ class EditAmbulanceQuote extends BaseEditComponent<AmbulanceQuote> {
                                     params={{ place_type: PLACE_TYPES.ESTABLISHMENT, city_id: this.state.inputs.transport_segment.origin_city_id }}
                                     error={this.state.submitted && (!this.state.inputs.transport_segment.origin_location_id && !this.state.inputs.transport_segment.origin_location)}
                                 />
+                                <p><strong>{this.state.inputs.transport_segment.origin_location.city ? this.state.inputs.transport_segment.origin_location.city.id !== this.state.inputs.transport_segment.origin_city_id ? this.state.inputs.transport_segment.origin_location.city.full_name : "" : ""}</strong></p>
                             </FormGroup>
                         </Col>
                         {this.state.inputs.is_intercity_removal && (
@@ -446,7 +453,7 @@ class EditAmbulanceQuote extends BaseEditComponent<AmbulanceQuote> {
                                     icon={<DirectionsCarIcon className="icon" />}
                                     placeholder="Escolha a ambulância"
                                     requestUrl="/Ambulances/autocomplete"
-                                    value={this.state.inputs.transport_segment.ambulance.name}
+                                    value={this.state.inputs.transport_segment.ambulance.code.toString()}
                                     RenderOption={(option: Ambulance) => (
                                         <AmbulanceOptionView>
                                             <AmbulanceOptionName>{option.code}</AmbulanceOptionName>

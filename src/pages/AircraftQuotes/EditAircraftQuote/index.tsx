@@ -105,8 +105,6 @@ class EditAircraftQuote extends BaseEditComponent<AircraftQuote> {
 
     async save(data: AircraftQuote)
     {
-        console.log(data);
-        return;
         this.setErrors([]);
         this.setWarnings([]);
         this.setProcessing(true);

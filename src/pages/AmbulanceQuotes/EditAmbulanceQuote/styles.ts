@@ -44,11 +44,21 @@ const LocationOptionTitle = styled.p`
     font-size: 12px;
     font-weight: bold;
     color: #333333;
+
+    @media screen and (max-width: 1200px)
+    {
+        font-size: 10px;
+    }
 `;
 
 const LocationOptionSubtitle = styled.p`    
     font-size: 12px;
     color: #666666;
+
+    @media screen and (max-width: 1200px)
+    {
+        font-size: 10px;
+    }
 `;
 
 const RouteMapView = styled.div<any>`
@@ -68,12 +78,22 @@ const AmbulanceOptionName = styled.p`
     font-weight: bold;
     color: #333333;
     margin-right: 5px;
+
+    @media screen and (max-width: 1200px)
+    {
+        font-size: 10px;
+    }
 `;
 
 const AmbulanceOptionText = styled.p`    
     font-size: 12px;
     color: #666666;
     margin-right: 5px;
+
+    @media screen and (max-width: 1200px)
+    {
+        font-size: 10px;
+    }
 `;
 
 export {

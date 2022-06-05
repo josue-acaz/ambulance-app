@@ -17,6 +17,7 @@ import Alert from "../../components/Alert";
 import Toolbar from "../../components/Task/Toolbar";
 import Pagination from "../../components/Task/Pagination";
 import ErrorComponent from "../../components/ErrorComponent";
+import WarningComponent from "../../components/WarningComponent";
 import LoadingSpinner from "../../components/spinners/LoadingSpinner";
 
 // styles
@@ -279,6 +280,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
                 <GridContent horizontalScrollView={true} isEditPage={false}>
                     {this.state.loading ? <LoadingSpinner size={40} color={colors.PRIMARY} /> : (
                         <PageView>
+                            {this.state.warnings && <WarningComponent warnings={this.state.warnings} />}
                             <this.RenderComponent />
                             {this.state.errors && <ErrorComponent errors={this.state.errors} />}
                         </PageView> 

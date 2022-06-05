@@ -20,10 +20,15 @@ const OptionView = styled.li<OptionViewProps>`
 const RenderOptionView = styled.div``;
 
 const OptionText = styled.p`
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #444444;
     text-transform: capitalize;
+
+    @media screen and (max-width: 1200px)
+    {
+        font-size: 10px;
+    }
 `;
 
 export {

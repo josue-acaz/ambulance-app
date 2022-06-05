@@ -271,11 +271,9 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
         this.setProcessing(false);
     }
 
-    handleSubmit(event: React.FormEvent<HTMLFormElement>)
+    handleSubmit(e: any)
     {
-        event.preventDefault();
         this.setState({ submitted: true });
-
         this.handleSave();
     }
 
@@ -286,6 +284,7 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
         this.setLoading(true);
         try {
             const response = await this.service.getById(id);
+            console.log(response.data);
             this.afterShow(response.data);
             this.setWarnings(response.warnings);
         } catch (error: any) {
@@ -325,11 +324,11 @@ class BaseEditComponent<T extends BaseEntity> extends Component<RouteComponentPr
                     {this.state.loading ? <LoadingSpinner color={colors.PRIMARY} /> : (
                         this.state.processing ? <ProcessingLoader title="Processando..." msg="Por favor, aguarde!" /> : (
                             <PageView padding="15">
-                                <form onSubmit={this.handleSubmit}>
+                                <form>
                                     <this.RenderComponent />
                                     {this.state.warnings && <WarningComponent warnings={this.state.warnings} />}
                                     {this.state.errors && <ErrorComponent errors={this.state.errors} />}
-                                    <Button type="submit" disabled={this.state.errors.length > 0}>Salvar</Button>
+                                    <Button type="button" disabled={this.state.errors.length > 0} onClick={this.handleSubmit}>Salvar</Button>
                                 </form> 
                             </PageView>  
                         )
