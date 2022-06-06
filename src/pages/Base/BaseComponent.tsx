@@ -83,7 +83,7 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
 
     componentDidMount()
     {
-        this.index();
+        this.index(this.state.pagination);
     }
 
     setCurrentId(current_id: string)
@@ -131,21 +131,20 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
         this.setState({ warnings });
     }
 
-    async index()
+    async index(pagination: any)
     {
         this.setErrors([]);
         this.setWarnings([]);
         this.setLoading(true);
         try {
-            const response = await this.service.pagination(this.state.pagination);
-            const pagination = response.data;
+            const response = await this.service.pagination(pagination);
+            const data = response.data;
 
-            this.setRows(pagination.data);
-            console.log(pagination.data);
-            this.setPagination("total_records", pagination.total_records);
-            this.setPagination("total_pages", pagination.total_pages);
-            this.setPagination("page_number", pagination.page_number);
-            this.setPagination("page_size", pagination.page_size);
+            this.setRows(data.data);
+            this.setPagination("total_records", data.total_records);
+            this.setPagination("total_pages", data.total_pages);
+            this.setPagination("page_number", data.page_number);
+            this.setPagination("page_size", data.page_size);
 
             this.setWarnings(response.warnings);
         } catch (error: any) {
@@ -161,25 +160,24 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
         this.setState({ pagination });
     }
 
-    handleChangePage(page: number) {
+    handleChangePage(e: any, page_number: number) {
         this.setPagination = this.setPagination.bind(this);
-
-        let page_number = 0;
-        let pagination = this.state.pagination;
-
-        if(page > 0) {
-            page_number = pagination.page_size;
-        }
+        var pagination = this.state.pagination;
 
         this.setPagination("page_number", page_number);
-        this.setPagination("page", page);
+        pagination.page_number = page_number;
+        this.index(pagination);
     }
 
     handleChangeRowsPerPage(event: any) {
         this.setPagination = this.setPagination.bind(this);
         const rows_per_page = event.target.value;
         this.setPagination("page_size", rows_per_page);
-        this.index();
+
+        var pagination = this.state.pagination;
+        pagination.page_size = rows_per_page;
+        pagination.page_number = 0;
+        this.index(pagination);
     }
 
     handleChangeSelecteds(selecteds: Array<string>) {
@@ -235,9 +233,12 @@ class BaseComponent<T extends BaseEntity> extends Component<RouteComponentProps,
 
     }
 
-    handleSearch(text: string)
+    async handleSearch(text: string)
     {
-
+        this.setLoading(true);
+        var pagination = this.state.pagination;
+        pagination.text = text;
+        await this.index(pagination);
     }
 
     handleOpenAlert()

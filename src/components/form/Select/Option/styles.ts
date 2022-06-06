@@ -15,11 +15,11 @@ const OptionView = styled.li<OptionViewProps>`
 `;
 
 const OptionText = styled.p`
-    font-size: 16px;
+    font-size: 12px;
     color: #444444;
 
     @media screen and (max-width: 1200px) {
-        font-size: 12px;
+        font-size: 10px;
     }
 `;
 

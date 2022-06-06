@@ -10,13 +10,13 @@ class Aerodrome extends BaseEntity
     altitude: number = 0;
     length: number = 0;
     width: number = 0;
-    operation: string = "";
+    operation: string = "VFR Diurno";
     designation: string = "";
     resistance: string = "";
-    surface: string = "";
-    type: string = "";
-    category: string = "";
-    access: string = "";
+    surface: string = "cascalho";
+    type: string = "aerodrome";
+    category: string = "I";
+    access: string = "private";
     city_id: string = "";
 
     // Not Mapped

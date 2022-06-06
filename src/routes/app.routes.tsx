@@ -13,6 +13,7 @@ import AircraftModels from "../pages/AircraftModels";
 import AircraftQuotes from "../pages/AircraftQuotes";
 import AmbulanceQuotes from "../pages/AmbulanceQuotes";
 import Ambulances from "../pages/Ambulances";
+import Aerodromes from "../pages/Aerodromes";
 import AmbulanceBases from "../pages/AmbulanceBases";
 import Download from "../pages/Download";
 
@@ -24,7 +25,7 @@ import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
-import AdjustIcon from "@mui/icons-material/Adjust";
+import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 
 // types
@@ -79,6 +80,11 @@ class AppRoutes extends React.Component {
             path: "/ambulance-quotes",
             exact: false,
             component: AmbulanceQuotes,
+        },
+        {
+            path: "/aerodromes",
+            exact: false,
+            component: Aerodromes,
         },
         {
             path: "/download",
@@ -146,6 +152,12 @@ class AppRoutes extends React.Component {
                     to: "/aircraft-models",
                     label: "Modelos de Aeronaves",
                     icon: <ConnectingAirportsIcon className="icon"/>,
+                    childs: []
+                },
+                {
+                    to: "/aerodromes",
+                    label: "Aeródromos",
+                    icon: <AirplaneTicketIcon className="icon" />,
                     childs: []
                 },
             ]

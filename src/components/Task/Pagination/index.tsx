@@ -15,7 +15,7 @@ export default function Pagination(props: TablePaginationProps) {
             component="div"
             count={props.count}
             rowsPerPage={props.limit}
-            page={props.page-1}
+            page={props.page}
             labelRowsPerPage={isMobile ? "Registros" : labelRowsPerPage}
             labelDisplayedRows={({ from, to }) => (`${from}-${to} de ${props.count !== -1 ? props.count : `${to}`}`)}
             onPageChange={props.handleChangePage}
