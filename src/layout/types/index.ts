@@ -1,3 +1,4 @@
+import React, { ReactNode } from "react";
 import AuthUser from "../../models/Auth/AuthUser";
 
 interface LayoutViewProps {
@@ -6,7 +7,7 @@ interface LayoutViewProps {
 
 interface SidebarOption {
     to: string;
-    icon: any;
+    icon: JSX.Element;
     label: string;
     childs: Array<SidebarOption>;
 };

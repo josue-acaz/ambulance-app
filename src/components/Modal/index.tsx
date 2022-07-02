@@ -1,5 +1,4 @@
 import React from "react";
-import { ModalProps } from "@mui/material/Modal";
 
 // styles
 import { ModalView } from "./styles";
